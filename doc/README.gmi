@@ -1,0 +1,15 @@
+# Documentation
+
+specification.gmi is a copy of the official Gemini specification.  It's saved here as a reference for the version of the document that this project is based off of.
+
+=> gemini://gemini.circumlunar.space/docs/specification.gmi Official specification.gmi source
+
+To retrieve the specification document, the following was run:
+
+```sh
+gemget gemini://gemini.circumlunar.space/docs/specification.gmi
+```
+
+The gemget tool is useful for copying Gemini documents.  You can find the project here:
+
+=> https://github.com/makeworld-the-better-one/gemget/ GitHub gemget project

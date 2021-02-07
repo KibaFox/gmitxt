@@ -1,0 +1,39 @@
+# This is my test Gemini 
+#Heading #1
+#
+# 
+## This is a level two heading.
+##Heading #2 
+##
+##	
+### This is a level three heading.
+###Heading #3 
+### 
+###		
+
+This is a text line.
+Another text line with trailing whitespace.   
+
+* List 1
+*List 2
+*
+* 
+
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+>
+
+=> https://example.tld/
+=>gemini://example.tld/ 
+=> gemini://example.tld/ Example link with a description
+=>	foo/bar/baz.txt  A relative link 
+```go 
+package main
+import "fmt"
+func main() {
+	fmt.Println("hello world")
+}
+```This text should be ignored!
+```
+Normal preformatted text
+```

@@ -1,0 +1,72 @@
+# gmitxt - Gemini Text Conversion Library and CLI Tool
+
+gmitxt is a library and command-line interface (CLI) tool for parsing and converting Gemini text into other formats, such as HTML.
+
+Gemini is both a network protocol and a text format.  You can read more about it here:
+
+=> https://gemini.circumlunar.space/  Project Gemini (via HTTPS)
+=> gemini://gemini.circumlunar.space/  Project Gemini (via Gemini)
+=> docs/specification.gmi Copy of the Gemini specification
+
+## Work in Progress
+
+This is currently a work in progress.  While this project is well tested, it is still open for feedback and there may be breaking changes while the project's major version is 0.
+
+If you depend on this project, please read the CHANGELOG.gmi before upgrading.
+
+=> CHANGELOG.gmi
+
+## Features
+
+* Memory allocation is minimized wherever possible.
+* Scanner parses Gemini text line-by-line to reduce memory allocation.
+* Zero external dependencies.  Only depend on the Go standard library.
+* 100% Test coverage.
+
+### Planned Features
+
+* Convert to Gemini text to HTML.
+* Output to Gemini text.
+* Command line tool to convert text.
+* Parse gemlog format.
+* Output gemlog to an atom feed.
+* Build a table of contents structure from Gemini text.
+* Apply your own templates for standalone HTML output.
+
+## Installing the Command-Line Tool
+
+TODO - There is no CLI tool yet.
+
+### Command-Line Usage
+
+TODO - There is no CLI tool yet.
+
+## Library Usage
+
+You can add this library to your Go project with the following:
+
+```sh
+go get https://git.sr.ht/~kiba/gmitxt
+```
+
+You can use godoc to view the library documentation:
+
+```sh
+godoc -http=localhost:6060
+```
+
+Then point your browser to localhost:6060 to view the documentation:
+
+=> http://localhost:6060
+
+## Contributing
+
+Contributions are welcome.  Please read the guide found in CONTRIBUTING.gmi.
+
+=> CONTRIBUTING.gmi Contributing guide
+
+## License
+
+This project is licensed by the MIT License.  See the LICENSE file for details.
+
+=> LICENSE

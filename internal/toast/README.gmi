@@ -1,0 +1,27 @@
+# CosmicToast Gemini Parser
+
+This is a clone of toast.cafe/x/gmi, a Gemini text parser by CosmicToast.  This is used to compare the performance and characteristics of my own parser.
+
+The following was run to rename the package and remove unused packages and tests from the library.
+
+```sh
+rm -rf go.mod cmd dprint *_test.go
+sed -i '' 's|package gmi|package toast|' *.go
+```
+
+This was cloned on 2020 December 13 and the latest clone on master:
+
+```git
+commit 4547f1f3a67617c7916e9bf0a3d1b98c4b2c0447 (HEAD -> master)
+Author: Chloe Kudryavtsev <toast@toast.cafe>
+Date:   Thu Aug 6 16:15:44 2020 -0400
+
+    fix silly typo (missing range keyword)
+```
+
+Relevant links:
+
+=> https://github.com/CosmicToast/gmi GitHub Source
+=> https://toast.cafe/x/gmi toast.cafe/x/gmi
+=> https://godoc.org/toast.cafe/x/gmi GoDocs Documentation
+=> https://pkg.go.dev/toast.cafe/x/gmi pkg.go.dev Documentation

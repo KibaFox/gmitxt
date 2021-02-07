@@ -1,0 +1,93 @@
+# Contributing
+
+This guide here to help you participate and work with this project.
+
+## Community / Contributing
+
+You do not need to code to contribute.  Here are a few ways you can help:
+
+* Giving feedback
+* Improving documentation
+* Testing
+* Bug reports
+* Code
+
+### Mailing List
+
+=> https://lists.sr.ht/~kiba/gmitxt List archive and dashboard
+=> mailto:~kiba/gmitxt@lists.sr.ht ~kiba/gmitxt@lists.sr.ht
+=> mailto:u.kiba.gmitxt@lists.sr.ht u.kiba.gmitxt@lists.sr.ht (if your service does not like `~` or `/` in the the address)
+
+Anyone may participate in the mailing list without creating an account.  Simply send an email to the mailing list to start participating.  You do not have to subscribe to participate.
+
+Before sending an email, please review the mailing list etiquette.  If you have not sent a code contribution by email before, take a look at git-send-email.io.
+
+=> https://man.sr.ht/lists.sr.ht/etiquette.md Mailing list etiquette
+=> https://git-send-email.io git-send-email.io
+=> https://man.sr.ht/lists.sr.ht/ lists.sr.ht docs
+
+### Issue Tracker
+
+=> https://todo.sr.ht/~kiba/gmitxt Issue tracker
+=> mailto:~kiba/gmitxt@todo.sr.ht ~kiba/gmitxt@lists.sr.ht
+=> mailto:u.kiba.gmitxt@todo.sr.ht u.kiba.gmitxt@lists.sr.ht (if your service does not like `~` or `/` in the the address)
+
+The issue tracker is used for tracking:
+
+* Bugs
+* Stories
+* Tasks
+
+If you are submitting by email, please review the mailing list etiquette.
+
+=> https://man.sr.ht/lists.sr.ht/etiquette.md Mailing list etiquette
+=> https://man.sr.ht/todo.sr.ht/ todo.sr.ht docs
+
+## Working with Project Code
+
+Below is an overview of what you need to work with this project for making code contributions or working with the source code in general.
+
+### Dependencies
+
+This project has the following dependencies:
+
+=> https://golang.org Go programming language and standard libraries
+=> https://magefile.org/ Mage build tool (similar to make, but uses Go)
+=> https://git-scm.com/ Git version control
+=> https://golangci-lint.run/ golangci-lint for Go code linting
+
+You need to install these before working with the project.
+
+It is also highly recommended to install an EditorConfig plugin for the editor you use.  This will read the `.editorconfig` file for this project and use the configured settings for your editor when you work on this project.
+
+=> https://editorconfig.org/ EditorConfig
+
+### Mage Targets and Help
+
+From the root directory of the project, run mage:
+
+```sh
+mage
+```
+
+This will show you the list of targets made available to you via the `magefile.go` file.  If there are more details for a target you can run:
+
+```sh
+mage -h <target>
+```
+
+### Linting
+
+The lint target runs static code analysis with golangci-lint configured via the `.golangci.yml` for this project.
+
+```sh
+mage lint
+```
+
+### Testing
+
+The test target runs all tests for the project.
+
+```sh
+mage test
+```
