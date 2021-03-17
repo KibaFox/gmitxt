@@ -1,7 +1,20 @@
 package gmitxt
 
+// Line represents a line of Gemini text.
+type Line struct {
+	// Num is the line number of the source of Gemini text.  Can be 0 if not
+	// scanned or source position is not relevant.
+	Num uint32
+	// Type is the type of line represented.
+	Type LineType
+	// Text is a slice of bytes containing the body of text for the Gemini line.
+	Text []byte
+	// URL is a slice of bytes containing the URL when the line is a Link.
+	URL []byte
+}
+
 // LineType describes the type of line in Gemini formatted text.
-type LineType int
+type LineType uint8
 
 const (
 	// Head1 is a heading level 1 line.  It is a line that starts with # and is

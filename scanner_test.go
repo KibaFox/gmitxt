@@ -135,152 +135,113 @@ func BenchmarkToastParser(b *testing.B) {
 	b.ReportAllocs()
 }
 
-func expectEnd(t *testing.T, s *gmitxt.Scanner, num int) {
+func expectEnd(t *testing.T, s *gmitxt.Scanner, num uint32) {
 	if s.Scan() {
 		t.Errorf("Line %d: scanner should be finished", s.Line())
 	}
 
-	if s.Line() != num {
+	if s.Line().Num != num {
 		t.Errorf("Line number was expected to be %d, but got: %d",
-			num, s.Line())
+			num, s.Line().Num)
 	}
 
 	if s.Err() != nil {
 		t.Errorf("Line %d: encountered error unexpected error: %v",
-			s.Line(), s.Err())
+			s.Line().Num, s.Err())
 	}
 
-	if s.Text() != "" {
+	if len(s.Line().Text) != 0 {
 		t.Errorf("Line %d: end text should be an empty string, got: `%s`",
-			s.Line(), s.Text())
+			s.Line().Num, s.Line().Text)
 	}
 
-	if !bytes.Equal(s.TextBytes(), []byte{}) {
-		t.Errorf("Line %d: end text bytes should be empty, got: %v",
-			s.Line(), s.TextBytes())
-	}
-
-	if s.URL() != "" {
+	if len(s.Line().URL) != 0 {
 		t.Errorf("Line %d: end url should be an empty string, got: `%s`",
-			s.Line(), s.URL())
-	}
-
-	if !bytes.Equal(s.URLBytes(), []byte{}) {
-		t.Errorf("Line %d: end url bytes should be empty, got: %v",
-			s.Line(), s.URLBytes())
+			s.Line().Num, s.Line().URL)
 	}
 }
 
 func expectStart(t *testing.T, s *gmitxt.Scanner) {
-	if s.Line() != 0 {
+	if s.Line().Num != 0 {
 		t.Errorf("Initial scanner should start at line number 0, got: %d",
-			s.Line())
+			s.Line().Num)
 	}
 
 	if s.Err() != nil {
 		t.Errorf("Initial scanner Err should be nil, got: %v", s.Err())
 	}
 
-	if s.Text() != "" {
-		t.Errorf("Initial scanner text should be an empty string, got: `%s`",
-			s.Text())
+	if len(s.Line().Text) != 0 {
+		t.Errorf("Initial scanner text should be an empty string, got: `%x`",
+			s.Line().Text)
 	}
 
-	if !bytes.Equal(s.TextBytes(), []byte{}) {
-		t.Errorf("Initial scanner bytes should be empty, got: %v",
-			s.TextBytes())
-	}
-
-	if s.URL() != "" {
-		t.Errorf("Initial scanner url be an empty string, got: `%s`", s.URL())
-	}
-
-	if !bytes.Equal(s.URLBytes(), []byte{}) {
-		t.Errorf("Initial scanner url bytes should be empty, got: %v",
-			s.URLBytes())
+	if len(s.Line().URL) != 0 {
+		t.Errorf("Initial scanner url be an empty string, got: `%x`",
+			s.Line().URL)
 	}
 }
 
 func expectLine(
 	t *testing.T,
 	s *gmitxt.Scanner,
-	num int,
+	num uint32,
 	typ gmitxt.LineType,
 	expected string,
 ) {
 	s.Scan()
 
-	if s.Line() != num {
+	if s.Line().Num != num {
 		t.Errorf("Line number was expected to be %d, but got: %d",
-			num, s.Line())
+			num, s.Line().Num)
 	}
 
 	if s.Err() != nil {
 		t.Errorf("Line %d: encountered error unexpected error: %v",
-			s.Line(), s.Err())
+			s.Line().Num, s.Err())
 	}
 
-	if s.Type() != typ {
+	if s.Line().Type != typ {
 		t.Errorf("Line %d: type was not detected as %s, got: %s",
-			s.Line(), typ, s.Type())
+			s.Line().Num, typ, s.Line().Type)
 	}
 
-	if s.Text() != expected {
-		t.Errorf("Line %d: text does not match `%s` got: `%s`",
-			s.Line(), expected, s.Text())
-	}
-
-	if !bytes.Equal(s.TextBytes(), []byte(expected)) {
+	if !bytes.Equal(s.Line().Text, []byte(expected)) {
 		t.Errorf("Line %d: bytes do not match %x got: %x",
-			s.Line(), []byte(expected), s.TextBytes())
+			s.Line().Num, []byte(expected), s.Line().Text)
 	}
 
-	if s.URL() != "" {
-		t.Errorf("Line %d: url should be empty: %s",
-			s.Line(), s.URL())
-	}
-
-	if !bytes.Equal(s.URLBytes(), []byte{}) {
-		t.Errorf("Line %d: url bytes should be empty, got: %v",
-			s.Line(), s.URLBytes())
+	if len(s.Line().URL) != 0 {
+		t.Errorf("Line %d: url should be empty; got: %x",
+			s.Line().Num, s.Line().URL)
 	}
 }
 
-func expectLink(t *testing.T, s *gmitxt.Scanner, num int, url, text string) {
+func expectLink(t *testing.T, s *gmitxt.Scanner, num uint32, url, text string) {
 	s.Scan()
 
-	if s.Line() != num {
+	if s.Line().Num != num {
 		t.Errorf("Line number was expected to be %d, but got: %d",
-			num, s.Line())
+			num, s.Line().Num)
 	}
 
 	if s.Err() != nil {
 		t.Errorf("Line %d: encountered error unexpected error: %v",
-			s.Line(), s.Err())
+			s.Line().Num, s.Err())
 	}
 
-	if s.Type() != gmitxt.Link {
+	if s.Line().Type != gmitxt.Link {
 		t.Errorf("Line %d: type was not detected as Link, got: %s",
-			s.Line(), s.Type())
+			s.Line().Num, s.Line().Type)
 	}
 
-	if s.URL() != url {
-		t.Errorf("Line %d: url does not match `%s` got: `%s`", s.Line(),
-			url, s.URL())
+	if !bytes.Equal(s.Line().URL, []byte(url)) {
+		t.Errorf("Line %d: url do not match %x got: %x",
+			s.Line().Num, []byte(url), s.Line().URL)
 	}
 
-	if !bytes.Equal(s.URLBytes(), []byte(url)) {
-		t.Errorf("Line %d: url bytes do not match %x got: %x",
-			s.Line(), []byte(url), s.URLBytes())
-	}
-
-	if s.Text() != text {
-		t.Errorf("Line %d: text does not match `%s` got: `%s`",
-			s.Line(), text, s.Text())
-	}
-
-	if !bytes.Equal(s.TextBytes(), []byte(text)) {
-		t.Errorf("Line %d: text bytes do not match %v got: %v",
-			s.Line(), []byte(text), s.TextBytes())
+	if !bytes.Equal(s.Line().Text, []byte(text)) {
+		t.Errorf("Line %d: text do not match %v got: %v",
+			s.Line().Num, []byte(text), s.Line().Text)
 	}
 }

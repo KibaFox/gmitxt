@@ -16,12 +16,19 @@ This is a line of text.
 func ExampleScanner() {
 	scanner := gmitxt.NewScanner(strings.NewReader(geminiText))
 	for scanner.Scan() {
-		if scanner.Type() == gmitxt.Link {
+		if scanner.Line().Type == gmitxt.Link {
 			fmt.Printf("line %d: %s: url %s: %s\n",
-				scanner.Line(), scanner.Type(), scanner.URL(), scanner.Text())
+				scanner.Line().Num,
+				scanner.Line().Type,
+				scanner.Line().URL,
+				scanner.Line().Text,
+			)
 		} else {
 			fmt.Printf("line %d: %s: %s\n",
-				scanner.Line(), scanner.Type(), scanner.Text())
+				scanner.Line().Num,
+				scanner.Line().Type,
+				scanner.Line().Text,
+			)
 		}
 	}
 

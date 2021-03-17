@@ -12,11 +12,6 @@ func TestLineTypeString(t *testing.T) {
 			gmitxt.LineType(0))
 	}
 
-	if gmitxt.LineType(-1).String() != "UNKNOWN" {
-		t.Errorf("Expected `UNKNOWN` for line type -1, got: `%s`",
-			gmitxt.LineType(-1))
-	}
-
 	if gmitxt.Head1.String() != "Head1" {
 		t.Errorf("Expected `Head1` for line type, got: `%s`", gmitxt.Head1)
 	}

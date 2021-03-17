@@ -7,6 +7,16 @@ The format is based on Keep a Changelog (adapted to Gemini text) and this projec
 => https://keepachangelog.com/en/1.0.0/ Keep a Changelog 1.0.0
 => https://semver.org/spec/v2.0.0.html Semantic Versioning 2.0.0
 
+## [0.2.0] - 2021-03-17
+### Added
+* Line type to represent a Gemini line of text.
+
+### Changed
+* Scanner Line() function returns the new Line type.
+
+### Removed
+* Scanner functions Type(), TextBytes(), Text(), URL(), and URLBytes().  These are essentially replaced by the updated Line() function.
+
 ## [0.1.0] - 2021-02-07
 ### Added
 * Scanner to scan Gemini text line-by-line.  It is based off bufio.Scanner from the Go standard library as the underlying scanner.  Each scan reads a line and identifies which Gemini line type was scanned.  Scanning a file line-by-line has the advantage of being able to scan long files and only allocate memory to store a single line of text at a time.
